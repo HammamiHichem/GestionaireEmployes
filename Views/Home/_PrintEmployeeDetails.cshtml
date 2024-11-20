@@ -1,0 +1,125 @@
+@model GestionaireEmployes.Models.Employee
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'employé</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f8fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #4e73df;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        li strong {
+            color: #4e73df;
+            font-weight: 600;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Style du bouton */
+        .btn-back {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #4e73df;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #2e59d9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back:focus {
+            outline: none;
+        }
+
+        /* Responsive design */
+        
+
+            h2 {
+                font-size: 1.7rem;
+            }
+
+            li {
+                font-size: 1rem;
+            }
+
+            .btn-back {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Détails de l'employé</h2>
+        <ul>
+            <li><strong>Nom complet:</strong> @Model.FullName</li>
+            <li><strong>Poste:</strong> @Model.Position</li>
+            <li><strong>Salaire:</strong> @Model.Salary.ToString("F2") @Model.Currency</li>
+            <li><strong>Date d'embauche:</strong> @Model.HireDate.ToShortDateString()</li>
+            <li><strong>Employé en cours:</strong> @(Model.IsCurrentEmployee ? "Oui" : "Non")</li>
+            <li><strong>Type de contrat:</strong> @Model.ContractType</li>
+        </ul>
+        <div class="button-container">
+            <!-- Lien pour revenir à la liste des employés -->
+            <a href="http://localhost:5084/Home/EmployeeList" class="btn-back">Retour à la liste des employés</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

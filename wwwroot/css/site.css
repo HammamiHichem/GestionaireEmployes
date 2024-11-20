@@ -1,0 +1,57 @@
+/* Formulaire de recherche */
+.search-form {
+  position: relative; /* Placer dans le flux de la barre de navigation */
+  display: flex; /* Alignement horizontal */
+  max-width: 300px; /* Limiter la largeur du formulaire */
+  margin-left: auto; /* Aligner à droite */
+}
+
+.search-input {
+  width: 100%; /* Occupe toute la largeur disponible */
+  padding: 6px 12px; /* Espacement interne ajusté */
+  font-size: 14px; /* Taille du texte adaptée */
+  border: 1px solid #ced4da; /* Couleur de bordure douce */
+  border-radius: 20px 0 0 20px; /* Coins arrondis */
+  outline: none; /* Supprime le contour par défaut */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Bordure bleue au focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25); /* Légère lueur */
+}
+
+.search-btn {
+  padding: 6px 12px; /* Espacement interne du bouton */
+  font-size: 14px; /* Taille de texte adaptée */
+  border: 1px solid #007bff; /* Couleur de bordure bleue */
+  background-color: #007bff; /* Fond bleu */
+  color: #fff; /* Texte blanc */
+  border-radius: 0 20px 20px 0; /* Coins arrondis */
+  cursor: pointer; /* Indicateur de clic */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #0056b3; /* Couleur plus sombre au survol */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Légère ombre */
+}
+
+/* Réduction pour écrans plus petits */
+@media (max-width: 768px) {
+  .search-form {
+    max-width: 200px; /* Réduction de la largeur */
+    margin-left: 0; /* Centrer sur les petits écrans */
+    margin-right: auto;
+  }
+
+  .search-input {
+    font-size: 12px; /* Taille de texte réduite */
+    padding: 5px 10px; /* Espacement plus petit */
+  }
+
+  .search-btn {
+    font-size: 12px; /* Taille de texte réduite */
+    padding: 5px 10px; /* Espacement ajusté */
+  }
+}

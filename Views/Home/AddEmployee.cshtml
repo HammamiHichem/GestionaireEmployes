@@ -1,0 +1,70 @@
+@model GestionaireEmployes.Models.Employee
+
+@{
+    ViewData["Title"] = "Ajouter un employé";
+}
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-action="AddEmployee" method="post" class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="FullName" class="form-label">Nom complet</label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Position" class="form-label">Poste</label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Salary" class="form-label">Salaire</label>
+                <input asp-for="Salary" class="form-control" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Currency" class="form-label">Devise</label>
+                <select asp-for="Currency" class="form-select">
+                    <option value="EUR">Euro (€)</option>
+                    <option value="USD">Dollar ($)</option>
+                    <option value="TND">Tunisian Dinar (TND)</option>
+                </select>
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="HireDate" class="form-label">Date d'embauche</label>
+                <input asp-for="HireDate" class="form-control" type="date" />
+                <span asp-validation-for="HireDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <div class="form-check">
+                    <input asp-for="IsCurrentEmployee" class="form-check-input" />
+                    <label asp-for="IsCurrentEmployee" class="form-check-label"></label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="EndDate" class="form-label">Date de fin de contrat</label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ContractType" class="form-label">Type de contrat</label>
+                <input asp-for="ContractType" class="form-control" />
+                <span asp-validation-for="ContractType" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Ajouter l'employé</button>
+            </div>
+        </form>
+    }
+    else
+    {
+        <p>Vous devez être connecté pour ajouter un employé.</p>
+
+        <a asp-controller="Home" asp-action="Register" class="btn btn-secondary mt-3 me-2">S'inscrire</a>
+        <a asp-controller="Home" asp-action="Login" class="btn btn-primary mt-3">Se connecter</a>
+    }
+</div>

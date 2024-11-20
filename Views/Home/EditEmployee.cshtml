@@ -1,0 +1,94 @@
+@model GestionaireEmployes.Models.Employee
+
+@{
+    ViewData["Title"] = "Modifier un employé";
+}
+
+<h2>Modifier un employé</h2>
+
+<!-- Formulaire de modification de l'employé -->
+<form asp-action="EditEmployee" method="post" id="editEmployeeForm">
+    <input type="hidden" asp-for="EmployeeId" />
+
+    <div class="form-group">
+        <label asp-for="FullName" class="control-label">Nom complet</label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Position" class="control-label">Poste</label>
+        <input asp-for="Position" class="form-control" />
+        <span asp-validation-for="Position" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Salary" class="control-label">Salaire</label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+  <label asp-for="Currency" class="control-label">Devise</label>
+  <select asp-for="Currency" class="form-control">
+    @foreach (var currency in Enum.GetValues(typeof(GestionaireEmployes.Models.Currency)))
+    {
+      <option value="@currency.ToString()">  @currency
+      </option>
+    }
+  </select>
+  <span asp-validation-for="Currency" class="text-danger"></span>
+</div>
+
+    <div class="form-group">
+        <label asp-for="HireDate" class="control-label">Date d'embauche</label>
+        <input asp-for="HireDate" type="date" class="form-control" />
+        <span asp-validation-for="HireDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IsCurrentEmployee" class="control-label">Employé actuel</label>
+        <input asp-for="IsCurrentEmployee" type="checkbox" class="form-check-input" />
+        <span asp-validation-for="IsCurrentEmployee" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContractType" class="control-label">Type de contrat</label>
+        <input asp-for="ContractType" class="form-control" />
+        <span asp-validation-for="ContractType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label">Date de fin</label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+</form>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Validation client et soumission AJAX
+        $("#editEmployeeForm").submit(function (event) {
+            event.preventDefault(); // Empêcher l'envoi par défaut du formulaire
+
+            var form = $(this);
+            var url = form.attr('action');
+            var data = form.serialize();
+
+            $.post(url, data)
+                .done(function (response) {
+                    // Afficher un message de succès ou rediriger
+                    alert("Employé mis à jour avec succès !");
+                    window.location.href = "/Home/EmployeeList"; // Redirection
+                })
+                .fail(function (xhr, status, error) {
+                    // Gestion des erreurs
+                    alert("Une erreur s'est produite : " + error);
+                });
+        });
+    </script>
+}

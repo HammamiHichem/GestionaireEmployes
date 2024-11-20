@@ -1,0 +1,94 @@
+@model IEnumerable<GestionaireEmployes.Models.Employee>
+
+@{
+    ViewData["Title"] = "Liste des employés";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-between align-items-center mb-4">
+        <div class="col-md-6">
+            <h2 class="fw-bold">Liste des employés</h2>
+        </div>
+        <div class="col-md-6 text-end">
+    <a asp-action="AddEmployee" class="btn btn-outline-dark btn-lg">
+        <i class="bi bi-person-plus"></i> Ajouter un employé
+    </a>
+</div>
+
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            Toastify({
+                text: "@TempData["SuccessMessage"]",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+        </script>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nom complet</th>
+                        <th>Poste</th>
+                        <th>Salaire</th>
+                        <th>Date d'embauche</th>
+                        <th>Employé en cours</th>
+                        <th>Type de contrat</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model)
+                    {
+                        <tr>
+                            <td>@employee.FullName</td>
+                            <td>@(employee.Position ?? "N/A")</td>
+                            <td>@employee.Salary.ToString("N2") (@employee.Currency)</td>
+                            <td>@employee.HireDate.ToShortDateString()</td>
+                            <td>@(employee.IsCurrentEmployee ? "Oui" : "Non")</td>
+                            <td>@employee.ContractType</td>
+                            <td class="text-center">
+                                 <div class="btn-group">
+    <a asp-action="EmployeeDetails" asp-route-id="@employee.EmployeeId" 
+       class="btn btn-info me-2" title="Voir les détails">
+        <span class="fa fa-search"></span>
+    </a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="EditEmployee" asp-route-id="@employee.EmployeeId" 
+           class="btn btn-danger me-2" title="Modifier l'employé">
+            <span class="fa fa-pencil"></span>
+        </a>
+        <form asp-action="DeleteEmployee" asp-route-id="@employee.EmployeeId" 
+              method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');" 
+              class="d-inline-block">
+            <button type="submit" class="btn btn-warning" title="Supprimer l'employé">
+                <span class="fa fa-trash"></span>
+            </button>
+        </form>
+    }
+</div>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p class="text-muted">Aucun employé trouvé.</p>
+    }
+</div>

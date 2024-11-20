@@ -1,0 +1,106 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Statistiques des employés";
+}
+
+<!-- En-tête de la page -->
+<section class="bg-primary text-white text-center py-5">
+    <h2>Statistiques des employés</h2>
+    <p>Vue d'ensemble des employés de l'entreprise et répartition par poste.</p>
+</section>
+
+<!-- Section des statistiques globales -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-primary">Total des employés</h5>
+                    <p class="card-text text-center display-4">@Model.TotalEmployees</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-success">Emplois en CDI</h5>
+                    <p class="card-text text-center display-4">@Model.CdiEmployees</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-warning">Emplois en CDD</h5>
+                    <p class="card-text text-center display-4">@Model.CddEmployees</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section des postes avec tableau -->
+<div class="container my-5">
+    <h3 class="text-center mb-4">Répartition des postes</h3>
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Poste</th>
+                <th>Nombre d'employés</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var position in Model.Positions)
+            {
+                <tr>
+                    <td>@position.Position</td>
+                    <td>@position.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Section Footer -->
+<footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2024 Gestionnaire d'Employés | Tous droits réservés</p>
+</footer>
+
+<!-- Ajouter le style personnalisé -->
+<style>
+    section {
+        background-color: #f8f9fa;
+    }
+    
+    .card {
+        border-radius: 15px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 2rem;
+    }
+
+    table {
+        border-radius: 10px;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 12px;
+    }
+
+    thead {
+        background-color: #343a40;
+        color: white;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>

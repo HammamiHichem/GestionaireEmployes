@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var isAuthenticated = User.Identity.IsAuthenticated;
+}
+
+<!-- Section de l'en-tête avec options vidéo/fond dynamique -->
+<section class="header18" style="background-image: url('@(isAuthenticated ? "/images/authenticated-background.jpg" : "/images/default-background.jpg")');">
+    <div class="mbr-overlay" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+
+    <div class="container text-center py-5">
+        <h1 class="display-4 text-dark">Bienvenue dans Gestionnaire d'Employés</h1>
+        <p class="lead text-dark">
+            Une solution efficace pour gérer vos employés en toute simplicité et rapidité.
+        </p>
+    </div>
+</section>
+
+<!-- Section sur les fonctionnalités principales -->
+<section class="container my-5">
+    <div class="row">
+        <!-- Gestion des employés -->
+        <div class="col-lg-4 text-center">
+            <a href="/Home/EmployeeList" class="text-decoration-none text-dark">
+                <i class="bi bi-people display-3 text-primary"></i>
+                <h3 class="mt-3">Gestion des employés</h3>
+                <p>
+                    Accédez rapidement à la liste des employés et gérez leurs informations facilement.
+                </p>
+            </a>
+        </div>
+
+        <!-- Suivi des performances -->
+        <div class="col-lg-4 text-center">
+            <a href="/Home/StatisticsPage" class="text-decoration-none text-dark">
+                <i class="bi bi-graph-up-arrow display-3 text-success"></i>
+                <h3 class="mt-3">Suivi des performances</h3>
+                <p>
+                    Analysez les performances et évaluez les résultats pour prendre de meilleures décisions.
+                </p>
+            </a>
+        </div>
+
+        <!-- Accès cloud -->
+        <div class="col-lg-4 text-center">
+            <i class="bi bi-cloud-upload display-3 text-info"></i>
+            <h3 class="mt-3">Accès cloud</h3>
+            <p>
+                Profitez d'un accès sécurisé à vos données de n'importe où, à tout moment.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Section sur les avantages -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Pourquoi choisir Gestionnaire d'Employés ?</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Simplicité</h4>
+                <p>
+                    Notre interface intuitive vous permet de gérer vos tâches sans effort, même pour les utilisateurs non techniques.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Efficacité</h4>
+                <p>
+                    Automatisez vos processus RH et concentrez-vous sur ce qui compte vraiment : votre équipe.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Sécurité</h4>
+                <p>
+                    Vos données sont protégées avec les dernières normes de sécurité pour garantir leur confidentialité.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Personnalisation</h4>
+                <p>
+                    Adaptez les fonctionnalités selon les besoins spécifiques de votre entreprise.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section de contact ou CTA -->
+<section class="text-center py-5">
+    <div class="container">
+        <h2 class="mb-4">Vous avez des questions ?</h2>
+        <p class="lead">
+            Contactez-nous dès aujourd'hui pour en savoir plus sur notre solution ou pour une démonstration gratuite.
+        </p>
+        <a class="btn btn-outline-primary btn-lg" href="/Home/Contact">Contactez-nous</a>
+    </div>
+</section>

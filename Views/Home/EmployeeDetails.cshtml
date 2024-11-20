@@ -1,0 +1,16 @@
+@model GestionaireEmployes.Models.Employee
+
+<div class="container mt-5">
+    <h2>Détails de l'employé</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Nom complet :</strong> @Model.FullName</li>
+        <li class="list-group-item"><strong>Poste :</strong> @Model.Position</li>
+        <li class="list-group-item"><strong>Salaire :</strong> @Model.Salary.ToString("C")</li>
+        <li class="list-group-item"><strong>Date d'embauche :</strong> @Model.HireDate.ToShortDateString()</li>
+        <li class="list-group-item"><strong>Employé en cours :</strong> @(Model.IsCurrentEmployee ? "Oui" : "Non")</li>
+        <li class="list-group-item"><strong>Type de contrat :</strong> @Model.ContractType</li>
+    </ul>
+    <a asp-action="EmployeeList" class="btn btn-secondary mt-3">
+        <i class="bi bi-arrow-left"></i> Retour à la liste
+    </a>
+</div>
